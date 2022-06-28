@@ -11,8 +11,8 @@ public class Main {
 
         createQuiz();
 
-        int[] hint = {0, 0};
-        while (hint[0] != 3) {
+        int strike = 0;
+        while (strike != 3) {
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("3자리 숫자를 입력하세요...");
@@ -21,9 +21,11 @@ public class Main {
 
             validateUserInput(userInput);
 
-            hint = getGameHint(hint);
+            int[] hint = getGameHint();
+            strike = hint[0];
+            int ball = hint[1];
 
-            System.out.printf("%d스트라이크, %d볼\n", hint[0], hint[1]);
+            System.out.printf("%d스트라이크, %d볼\n", strike, ball);
         }
 
         System.out.println("홈런!");
@@ -44,22 +46,19 @@ public class Main {
 
     private static void validateUserInput(String userInput) {
         isNumericType(userInput);
-
         isCorrectLength(userInput);
-
-        isExistDuplicateValue(userInput);
+        parseUserInputToUserGameNumber(userInput);
+        isExistDuplicateValue();
     }
 
-    private static int[] getGameHint(int[] hint) {
-        hint = new int[]{0, 0};
+    private static int[] getGameHint() {
+        int[] hint = new int[]{0, 0};
         for (int i = 0; i < user.length; i++) {
             final int finalI = i;
-            if (Arrays.stream(quiz).anyMatch(num -> num == user[finalI])) {
-                if (quiz[i] == user[i]) {
-                    hint[0]++;
-                } else {
-                    hint[1]++;
-                }
+            if (quiz[i] == user[i]) {
+                hint[0]++;
+            } else if(Arrays.stream(quiz).anyMatch(num -> num == user[finalI])) {
+                hint[1]++;
             }
         }
 
@@ -80,12 +79,14 @@ public class Main {
         }
     }
 
-    private static void isExistDuplicateValue(String userInput) {
+    private static void parseUserInputToUserGameNumber(String userInput) {
         char[] charArray = userInput.toCharArray();
         for (int i = 0; i < charArray.length; i++) {
             user[i] = Character.getNumericValue(charArray[i]);
         }
+    }
 
+    private static void isExistDuplicateValue() {
         for (int i = 0; i < user.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (user[i] == user[j]) {
