@@ -8,13 +8,13 @@ public class Quiz {
         for (int i = 0; i < quiz.length; i++) {
             quiz[i] = random.nextInt(10);
 
-            checkDuplicateValue(i);
+            compareValueWithSmallerThanCurrentIndex(i);
         }
 
         return quiz;
     }
 
-    private static void checkDuplicateValue(int i) {
+    private static void compareValueWithSmallerThanCurrentIndex(int i) {
         for (int j = 0; j < i; j++) {
             while (isDuplicateValue(i, j)) {
                 quiz[i] = random.nextInt(10);
