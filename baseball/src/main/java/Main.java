@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     private static int[] quiz;
-    private static final int[] user = {0, 0, 0};
+    private static int[] user;
 
     public static void main(String[] args) {
         System.out.println("숫자야구를 시작합니다...");
@@ -19,7 +19,7 @@ public class Main {
             System.out.print("입력 : ");
             String userInput = scanner.nextLine();
 
-            parseUserInputToIntType(userInput);
+            user = Parser.parseUserInputToIntType(userInput);
 
             int[] hint = getGameHint();
             strike = hint[0];
@@ -29,15 +29,6 @@ public class Main {
         }
 
         System.out.println("홈런!");
-    }
-
-    private static void parseUserInputToIntType(String userInput) {
-        isNumericType(userInput);
-        isCorrectLength(userInput);
-
-        parseUserInputToUserGameNumber(userInput);
-
-        isExistDuplicateValue();
     }
 
     private static int[] getGameHint() {
@@ -52,36 +43,5 @@ public class Main {
         }
 
         return hint;
-    }
-
-    private static void isNumericType(String userInput) {
-        try {
-            Integer.parseInt(userInput);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("숫자만 입력해야 합니다!\n" + e.getMessage());
-        }
-    }
-
-    private static void isCorrectLength(String userInput) {
-        if (userInput.length() != 3) {
-            throw new RuntimeException("3자리를 입력해야 합니다!");
-        }
-    }
-
-    private static void parseUserInputToUserGameNumber(String userInput) {
-        char[] charArray = userInput.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            user[i] = Character.getNumericValue(charArray[i]);
-        }
-    }
-
-    private static void isExistDuplicateValue() {
-        for (int i = 0; i < user.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (user[i] == user[j]) {
-                    throw new RuntimeException("중복된 숫자가 존재합니다!");
-                }
-            }
-        }
     }
 }
