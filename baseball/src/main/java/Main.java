@@ -3,13 +3,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    private static final int[] quiz = {0, 0, 0};
+    private static int[] quiz;
     private static final int[] user = {0, 0, 0};
 
     public static void main(String[] args) {
         System.out.println("숫자야구를 시작합니다...");
 
-        createQuiz();
+        quiz = Quiz.createQuiz();
 
         int strike = 0;
         while (strike != 3) {
@@ -19,7 +19,7 @@ public class Main {
             System.out.print("입력 : ");
             String userInput = scanner.nextLine();
 
-            validateUserInput(userInput);
+            parseUserInputToIntType(userInput);
 
             int[] hint = getGameHint();
             strike = hint[0];
@@ -31,23 +31,12 @@ public class Main {
         System.out.println("홈런!");
     }
 
-    private static void createQuiz() {
-        Random random = new Random();
-        for (int i = 0; i < quiz.length; i++) {
-            quiz[i] = random.nextInt(10);
-
-            for (int j = 0; j < i; j++) {
-                while (quiz[i] == quiz[j]) {
-                    quiz[i] = random.nextInt(10);
-                }
-            }
-        }
-    }
-
-    private static void validateUserInput(String userInput) {
+    private static void parseUserInputToIntType(String userInput) {
         isNumericType(userInput);
         isCorrectLength(userInput);
+
         parseUserInputToUserGameNumber(userInput);
+
         isExistDuplicateValue();
     }
 
