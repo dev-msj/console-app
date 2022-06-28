@@ -11,9 +11,8 @@ public class Main {
 
         createQuiz();
 
-        int ball = 0;
-        int strike = 0;
-        while (strike != 3) {
+        int[] hint = {0, 0};
+        while (hint[0] != 3) {
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("3자리 숫자를 입력하세요...");
@@ -22,20 +21,9 @@ public class Main {
 
             validateUserInput(userInput);
 
-            ball = 0;
-            strike = 0;
-            for (int i = 0; i < user.length; i++) {
-                final int finalI = i;
-                if (Arrays.stream(quiz).anyMatch(num -> num == user[finalI])) {
-                    if (quiz[i] == user[i]) {
-                        strike++;
-                    } else {
-                        ball++;
-                    }
-                }
-            }
+            hint = getGameHint(hint);
 
-            System.out.printf("%d스트라이크, %d볼\n", strike, ball);
+            System.out.printf("%d스트라이크, %d볼\n", hint[0], hint[1]);
         }
 
         System.out.println("홈런!");
@@ -60,6 +48,22 @@ public class Main {
         isCorrectLength(userInput);
 
         isExistDuplicateValue(userInput);
+    }
+
+    private static int[] getGameHint(int[] hint) {
+        hint = new int[]{0, 0};
+        for (int i = 0; i < user.length; i++) {
+            final int finalI = i;
+            if (Arrays.stream(quiz).anyMatch(num -> num == user[finalI])) {
+                if (quiz[i] == user[i]) {
+                    hint[0]++;
+                } else {
+                    hint[1]++;
+                }
+            }
+        }
+
+        return hint;
     }
 
     private static void isNumericType(String userInput) {
