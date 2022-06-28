@@ -9,16 +9,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("숫자야구를 시작합니다...");
 
-        Random random = new Random();
-        for (int i = 0; i < quiz.length; i++) {
-            quiz[i] = random.nextInt(10);
-
-            for (int j = 0; j < i; j++) {
-                while (quiz[i] == quiz[j]) {
-                    quiz[i] = random.nextInt(10);
-                }
-            }
-        }
+        createQuiz();
 
         int ball = 0;
         int strike = 0;
@@ -29,28 +20,7 @@ public class Main {
             System.out.print("입력 : ");
             String userInput = scanner.nextLine();
 
-            try {
-                Integer.parseInt(userInput);
-            } catch (RuntimeException e) {
-                throw new RuntimeException("숫자만 입력해야 합니다!\n" + e.getMessage());
-            }
-
-            if (userInput.length() != 3) {
-                throw new RuntimeException("3자리를 입력해야 합니다!");
-            }
-
-            char[] charArray = userInput.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                user[i] = Character.getNumericValue(charArray[i]);
-            }
-
-            for (int i = 0; i < user.length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (user[i] == user[j]) {
-                        throw new RuntimeException("중복된 숫자가 존재합니다!");
-                    }
-                }
-            }
+            validateUserInput(userInput);
 
             ball = 0;
             strike = 0;
@@ -69,5 +39,55 @@ public class Main {
         }
 
         System.out.println("홈런!");
+    }
+
+    private static void createQuiz() {
+        Random random = new Random();
+        for (int i = 0; i < quiz.length; i++) {
+            quiz[i] = random.nextInt(10);
+
+            for (int j = 0; j < i; j++) {
+                while (quiz[i] == quiz[j]) {
+                    quiz[i] = random.nextInt(10);
+                }
+            }
+        }
+    }
+
+    private static void validateUserInput(String userInput) {
+        isNumericType(userInput);
+
+        isCorrectLength(userInput);
+
+        isExistDuplicateValue(userInput);
+    }
+
+    private static void isNumericType(String userInput) {
+        try {
+            Integer.parseInt(userInput);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("숫자만 입력해야 합니다!\n" + e.getMessage());
+        }
+    }
+
+    private static void isCorrectLength(String userInput) {
+        if (userInput.length() != 3) {
+            throw new RuntimeException("3자리를 입력해야 합니다!");
+        }
+    }
+
+    private static void isExistDuplicateValue(String userInput) {
+        char[] charArray = userInput.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            user[i] = Character.getNumericValue(charArray[i]);
+        }
+
+        for (int i = 0; i < user.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (user[i] == user[j]) {
+                    throw new RuntimeException("중복된 숫자가 존재합니다!");
+                }
+            }
+        }
     }
 }
