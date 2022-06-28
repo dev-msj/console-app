@@ -11,6 +11,10 @@ public class Main {
 
         quiz = Quiz.createQuiz();
 
+        gameStart();
+    }
+
+    private static void gameStart() {
         int strike = 0;
         while (strike != 3) {
             Scanner scanner = new Scanner(System.in);
