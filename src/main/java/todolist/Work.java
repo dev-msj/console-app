@@ -1,3 +1,5 @@
+package todolist;
+
 public class Work {
     private String jobName;
     private boolean completion;

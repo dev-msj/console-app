@@ -1,8 +1,10 @@
+package todolist;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class TodoList {
     private static final Scanner scanner = new Scanner(System.in);
     private static final List<Work> workList = new ArrayList<>();
 

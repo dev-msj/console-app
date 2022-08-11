@@ -1,3 +1,5 @@
+package baseball;
+
 public class Parser {
     private static final int[] user = {0, 0, 0};
     

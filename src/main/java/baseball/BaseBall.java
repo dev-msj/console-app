@@ -1,7 +1,9 @@
+package baseball;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class BaseBall {
     private static int[] quiz;
     private static int[] user;
 
