@@ -21,6 +21,38 @@ String으로 구현하고 약간의 알고리즘을 사하면 된다.
 7. 마지막 loop가 끝난 후 upperNumber가 '0'이 아니라면 StringBuilder에 추가한다.
 8. StringBuilder를 reverse한다.
 
+## 설계
+
+### Model
+
+* **BigInt** 
+  * description : Long 타입의 크기를 벗어나는 Decimal Number를 String 형태로 저장
+  * public variable
+    * decimalString : String형의 Decimal값을 저장한다.
+  * public method
+    * constructor : String형의 Decimal 값을 받아 decimalString에 저장한다. 파라메터가 없을 경우 기본값은 "0"이다.
+    * multiplyTenToSelf : 자신의 Decimal String에 10을 곱한다.
+    * equals & hashCode : 전달된 객체가 동일한 값을 가지는지 비교한다.
+    * compareTo : 전달된 객체의 String Number 값을 비교하여 비교 대상보다 크면 1, 동일하면 0, 작으면 -1을 반환한다.
+  * private method
+    * compareFirstChar : 각 객체들의 0번째 index에 있는 Char Number들의 크기 비교 결과를 반환한다.
+
+### Service
+
+* BigIntCalculator
+  * description : BigInt 연산 클래스의 인터페이스. 2개의 BigInt들 간의 산술 연산 기능을 제공한다.
+  * method
+    * plus : 2개의 BigInt 객체를 받아 덧셈 연산 후 BigInt형으로 결과를 반환한다.
+
+* BigIntCalculatorImpl(implements BigIntCalculator)
+  * description : BigIntCalculator의 구현 클래스
+  * private variable
+    * upperNumber : 연산 과정에서 발생한 올림수를 저장한다.
+  * public method
+    * plus : 덧셈 결과를 반환한다.
+  * private method
+    * addCharNumber : 각 Char Number들 간의 덧셈 연산을 한다.
+
 ## 적용
 
 ### 곱셈
