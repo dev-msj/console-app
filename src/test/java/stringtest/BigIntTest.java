@@ -1,6 +1,6 @@
 package stringtest;
 
-import big_int.decimal.BigInt;
+import big_int.decimal.Model.BigInt;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

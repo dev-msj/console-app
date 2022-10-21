@@ -1,4 +1,4 @@
-package big_int.decimal;
+package big_int.decimal.Model;
 
 public class BigInt {
     private int upperNumber = 0;
