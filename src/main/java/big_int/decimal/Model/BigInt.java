@@ -1,59 +1,46 @@
 package big_int.decimal.Model;
 
+import java.util.Objects;
+
 public class BigInt {
-    private int upperNumber = 0;
+    public String decimalString;
 
-    public String[] formatMatch(String decimalA, String decimalB) {
-        String padding = makePaddingFormat(Math.max(decimalA.length(), decimalB.length()));
-
-        return new String[] {
-                replaceSpaceToZero(String.format(padding, decimalA)),
-                replaceSpaceToZero(String.format(padding, decimalB))
-        };
+    public BigInt() {
+        decimalString = "0";
     }
 
-    public int compareFirstChar(String decimalA, String decimalB) {
-        int intA = Integer.parseInt(String.valueOf(decimalA.charAt(0)));
-        int intB = Integer.parseInt(String.valueOf(decimalB.charAt(0)));
-
-        return Integer.compare(intA - intB, 0);
+    public BigInt(String decimalString) {
+        this.decimalString = decimalString;
     }
 
-    public String plus(String targetA, String targetB) {
-        StringBuilder stringBuilder = new StringBuilder();
+    public void multiplyTenToSelf() {
+        decimalString += "0";
+    }
 
-        for (int i = targetA.length() - 1; i >= 0; i--) {
-            int intA = Integer.parseInt(String.valueOf(targetA.charAt(i)));
-            int intB = Integer.parseInt(String.valueOf(targetB.charAt(i)));
-
-
-            int result = intA + intB + upperNumber;
-
-            char appendChar;
-            if (result >= 10) {
-                String resultStr = Integer.toString(result);
-                appendChar = resultStr.charAt(1);
-                upperNumber = Integer.parseInt(String.valueOf(resultStr.charAt(0)));
-            } else {
-                appendChar = Character.forDigit(result, 10);
-                upperNumber = 0;
-            }
-
-            stringBuilder.append(appendChar);
+    public int compareTo(BigInt target) {
+        if (decimalString.length() > target.decimalString.length()) {
+            return 1;
+        } else if (decimalString.length() == target.decimalString.length()) {
+            return compareFistChar(decimalString.charAt(0), target.decimalString.charAt(0));
+        } else {
+            return -1;
         }
-
-        if (upperNumber != 0) {
-            stringBuilder.append(upperNumber);
-        }
-
-        return stringBuilder.reverse().toString();
     }
 
-    private String replaceSpaceToZero(String str) {
-        return str.replace(' ', '0');
+    private int compareFistChar(char source, char target) {
+        return Integer.compare(Character.digit(source, 10), Character.digit(target, 10));
     }
 
-    private String makePaddingFormat(int paddingLength) {
-        return String.format("%%%ds", paddingLength);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BigInt bigInt = (BigInt) o;
+        return Objects.equals(decimalString, bigInt.decimalString);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(decimalString);
     }
 }
