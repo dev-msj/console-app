@@ -34,6 +34,7 @@ String으로 구현하고 약간의 알고리즘을 사하면 된다.
     * multiplyTenToSelf : 자신의 Decimal String에 10을 곱한다.
     * equals & hashCode : 전달된 객체가 동일한 값을 가지는지 비교한다.
     * compareTo : 전달된 객체의 String Number 값을 비교하여 비교 대상보다 크면 1, 동일하면 0, 작으면 -1을 반환한다.
+    * toString : decimalString 값을 출력한다.
   * private method
     * compareFirstChar : 각 객체들의 0번째 index에 있는 Char Number들의 크기 비교 결과를 반환한다.
 
@@ -47,11 +48,17 @@ String으로 구현하고 약간의 알고리즘을 사하면 된다.
 * BigIntCalculatorImpl(implements BigIntCalculator)
   * description : BigIntCalculator의 구현 클래스
   * private variable
+    * resultDecimalString : 연산 결과
+    * largeInt : 큰 수
+    * smallInt : 작은 수
     * upperNumber : 연산 과정에서 발생한 올림수를 저장한다.
   * public method
+    * constructor : 2개의 BigInt 객체를 받아서 큰 수는 large에 작은 수는 small에 저장한다.
     * plus : 덧셈 결과를 반환한다.
   * private method
+    * charAtHandler : String index 범위를 벗어나는 char를 가져오려고 할 경우 '0'을 return한다.
     * addCharNumber : 각 Char Number들 간의 덧셈 연산을 한다.
+    * getAppendChar : resultDecimalString에 append할 char를 가져오고, 올림수가 발생하면 upperNumber에 저장한다.
 
 ## 적용
 
