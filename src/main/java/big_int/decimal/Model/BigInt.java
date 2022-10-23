@@ -3,7 +3,7 @@ package big_int.decimal.Model;
 import java.util.Objects;
 
 public class BigInt {
-    public String decimalString;
+    private String decimalString;
 
     public BigInt() {
         decimalString = "0";
@@ -11,6 +11,10 @@ public class BigInt {
 
     public BigInt(String decimalString) {
         this.decimalString = decimalString;
+    }
+
+    public String getDecimalString() {
+        return decimalString;
     }
 
     public void multiplyTenToSelf() {
@@ -42,5 +46,10 @@ public class BigInt {
     @Override
     public int hashCode() {
         return Objects.hash(decimalString);
+    }
+
+    @Override
+    public String toString() {
+        return decimalString;
     }
 }
