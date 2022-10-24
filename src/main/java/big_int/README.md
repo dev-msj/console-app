@@ -12,14 +12,13 @@ String으로 구현하고 약간의 알고리즘을 사하면 된다.
 
 ## 구현 내용
 
-1. 덧셈할 숫자들의 길이가 동일하도록 '0'으로 left padding을 채워준다.
-2. 1의 자리수부터 문자를 하나씩 꺼내 덧셈한다.
-3. default value가 '0'인 uppderNumber도 더한다.
-4. 덧셈 결과의 1의 자리수는 StringBuilder에 추가한다.
-5. 덧셈 결과가 10 이상이면 10의 자리수는 upperNumber에 저장한다.
-6. 2-5 과정을 반복한다.
-7. 마지막 loop가 끝난 후 upperNumber가 '0'이 아니라면 StringBuilder에 추가한다.
-8. StringBuilder를 reverse한다.
+1. 1의 자리수부터 문자를 하나씩 꺼내 덧셈한다.
+2. default value가 '0'인 uppderNumber도 더한다.
+3. 덧셈 결과의 1의 자리수는 StringBuilder에 추가한다.
+4. 덧셈 결과가 10 이상이면 10의 자리수는 upperNumber에 저장한다.
+5. 1-5 과정을 반복한다.
+6. 마지막 loop가 끝난 후 upperNumber가 '0'이 아니라면 StringBuilder에 추가한다.
+7. StringBuilder를 reverse한다.
 
 ## 설계
 
@@ -42,23 +41,10 @@ String으로 구현하고 약간의 알고리즘을 사하면 된다.
 
 * BigIntCalculator
   * description : BigInt 연산 클래스의 인터페이스. 2개의 BigInt들 간의 산술 연산 기능을 제공한다.
-  * method
+  * private static variable
+    * resultDecimalString : 연산 결과를 저장
+  * public static method
     * plus : 2개의 BigInt 객체를 받아 덧셈 연산 후 BigInt형으로 결과를 반환한다.
-
-* BigIntCalculatorImpl(implements BigIntCalculator)
-  * description : BigIntCalculator의 구현 클래스
-  * private variable
-    * resultDecimalString : 연산 결과
-    * largeInt : 큰 수
-    * smallInt : 작은 수
-    * upperNumber : 연산 과정에서 발생한 올림수를 저장한다.
-  * public method
-    * constructor : 2개의 BigInt 객체를 받아서 큰 수는 large에 작은 수는 small에 저장한다.
-    * plus : 덧셈 결과를 반환한다.
-  * private method
-    * charAtHandler : String index 범위를 벗어나는 char를 가져오려고 할 경우 '0'을 return한다.
-    * addCharNumber : 각 Char Number들 간의 덧셈 연산을 한다.
-    * getAppendChar : resultDecimalString에 append할 char를 가져오고, 올림수가 발생하면 upperNumber에 저장한다.
 
 ## 적용
 
