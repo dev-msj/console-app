@@ -41,8 +41,6 @@ String으로 구현하고 약간의 알고리즘을 사하면 된다.
 
 * BigIntCalculator
   * description : BigInt 연산 클래스의 인터페이스. 2개의 BigInt들 간의 산술 연산 기능을 제공한다.
-  * private static variable
-    * resultDecimalString : 연산 결과를 저장
   * public static method
     * plus : 2개의 BigInt 객체를 받아 덧셈 연산 후 BigInt형으로 결과를 반환한다.
 
