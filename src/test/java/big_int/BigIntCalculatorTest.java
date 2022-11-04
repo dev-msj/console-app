@@ -1,7 +1,6 @@
 package big_int;
 
 import big_int.decimal.Model.BigInt;
-import big_int.decimal.Service.BigIntCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ class BigIntCalculatorTest {
 
     @Test
     void plus() {
-        BigInt result = BigIntCalculator.plus(targetA, targetB);
+        BigInt result = BigInt.Calculator.plus(targetA, targetB);
 
         Assertions.assertEquals("10460000000000000000005897", result.toString());
     }
