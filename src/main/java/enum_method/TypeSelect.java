@@ -1,8 +1,27 @@
 package enum_method;
 
-public class TypeSelect {
-    public static SampleEnum select(String decimalNumber) {
+import java.util.HashMap;
+import java.util.Map;
 
-        return SampleEnum.Type_A;
+public class TypeSelect {
+    private final Map<String, Map<String, SampleEnum>> data = new HashMap<>();
+
+    public TypeSelect() {
+        data.put(
+                "int",
+                new HashMap<String, SampleEnum>() {{
+                    put("30", SampleEnum.Type_Int);
+                }}
+        );
+        data.put(
+                "big_int",
+                new HashMap<String, SampleEnum>() {{
+                    put("30", SampleEnum.Type_BigInt);
+                }}
+        );
+    }
+
+    public Map<String, Map<String, SampleEnum>> select() {
+        return data;
     }
 }
