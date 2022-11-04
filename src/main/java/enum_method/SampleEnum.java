@@ -6,9 +6,8 @@ import big_int.decimal.Service.BigIntCalculator;
 import java.util.function.Function;
 
 public enum SampleEnum {
-    Type_A(value -> value),
-    Type_B(value -> String.valueOf(Integer.parseInt(value) * 3)),
-    Type_C(value -> BigIntCalculator.plus(new BigInt(value), new BigInt("15")).toString());
+    Type_Int(value -> String.valueOf(Integer.parseInt(value) + 15)),
+    Type_BigInt(value -> BigIntCalculator.plus(new BigInt(value), new BigInt("15")).toString());
 
     private final Function<String, String> expression;
 
