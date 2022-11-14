@@ -1,3 +1,5 @@
+package enum_method;
+
 import enum_method.SampleEnum;
 import enum_method.TypeSelect;
 import org.junit.jupiter.api.Assertions;
