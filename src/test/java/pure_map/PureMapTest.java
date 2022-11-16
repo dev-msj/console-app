@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 public class PureMapTest {
     @Test
-    public void testPureMap() {
+    public void testPureMapPut() {
         PureMap<String, Integer> map = new PureMap<>();
         map.put("test", 13);
         map.put("tests", 14);
 
         Assertions.assertEquals(13, map.get("test"));
         Assertions.assertEquals(14, map.get("tests"));
-        Assertions.assertNull(map.get("map"));
+        Assertions.assertThrows(NullPointerException.class, () -> map.get("map"));
     }
 
     @Test
@@ -38,6 +38,17 @@ public class PureMapTest {
 
         Assertions.assertEquals(1, map.get("test"));
         Assertions.assertEquals(14, map.get("fly"));
-        Assertions.assertThrows(NullPointerException.class, () -> map.get("map"));
+        Assertions.assertThrows(NullPointerException.class, () -> map.get("baby"));
+    }
+
+    @Test
+    public void testPureMapRemove() {
+        PureMap<String, Integer> map = new PureMap<>();
+        map.put("test", 13);
+        map.put("tests", 14);
+        map.remove("test");
+
+        Assertions.assertEquals(14, map.get("tests"));
+        Assertions.assertThrows(NullPointerException.class, () -> map.get("test"));
     }
 }
