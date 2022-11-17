@@ -4,7 +4,7 @@ public class PureMap<K, V> {
     private static final int MAP_SIZE = 16;
     private int map_use = 0;
 
-    private final MapObject<K, V>[] objArray = new MapObject[MAP_SIZE];
+    private final MapObject<K, V>[] buckets = new MapObject[MAP_SIZE];
 
     public void put(K key, V value) {
         if (map_use == MAP_SIZE) {
@@ -16,8 +16,8 @@ public class PureMap<K, V> {
         while(collision < MAP_SIZE) {
             int index = multipleHashFunction(key.hashCode(), collision);
 
-            if (objArray[index] == null) {
-                objArray[index] = new MapObject<>(key, value);
+            if (buckets[index] == null) {
+                buckets[index] = new MapObject<>(key, value);
                 map_use++;
 
                 return;
@@ -32,7 +32,7 @@ public class PureMap<K, V> {
         if (index == -1)
             throw new NullPointerException("키가 존재하지 않습니다.");
         else
-            return objArray[index].getValue();
+            return buckets[index].getValue();
     }
 
     public void remove(K removeKey) {
@@ -40,7 +40,7 @@ public class PureMap<K, V> {
         if (index == -1)
             throw new NullPointerException("키가 존재하지 않습니다.");
         else
-            objArray[index] = null;
+            buckets[index] = null;
     }
 
     private int findKeyIndex(K findKey) {
@@ -48,7 +48,7 @@ public class PureMap<K, V> {
         while(collision < MAP_SIZE) {
             int index = multipleHashFunction(findKey.hashCode(), collision);
 
-            if (findKey.equals(objArray[index].getKey()))
+            if (findKey.equals(buckets[index].getKey()))
                 return index;
             else
                 collision++;
