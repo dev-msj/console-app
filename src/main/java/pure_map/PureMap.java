@@ -14,7 +14,7 @@ public class PureMap<K, V> {
 
         int collision = 0;
         while(collision < MAP_SIZE) {
-            int index = multipleHashFunction(key.hashCode(), collision);
+            int index = doubleHashing(key.hashCode(), collision);
 
             if (buckets[index] == null) {
                 buckets[index] = new MapObject<>(key, value);
@@ -46,7 +46,7 @@ public class PureMap<K, V> {
     private int findKeyIndex(K findKey) {
         int collision = 0;
         while(collision < MAP_SIZE) {
-            int index = multipleHashFunction(findKey.hashCode(), collision);
+            int index = doubleHashing(findKey.hashCode(), collision);
 
             if (findKey.equals(buckets[index].getKey()))
                 return index;
@@ -57,10 +57,18 @@ public class PureMap<K, V> {
         return -1;
     }
 
-    private int multipleHashFunction(int keyHash, int collision) {
-        double xA = Math.abs(keyHash + collision) * 0.73;
+    private int doubleHashing(int keyHash, int collision) {
+        return (multipleHashFunction(keyHash) + (collision * divisionHashFunction(keyHash))) % MAP_SIZE;
+    }
+
+    private int multipleHashFunction(int keyHash) {
+        double xA = Math.abs(keyHash) * 0.73;
         xA = xA - (int) xA;
 
         return (int) (xA * MAP_SIZE);
+    }
+
+    private int divisionHashFunction(int keyHash) {
+        return Math.abs(keyHash) % 7 + 1;
     }
 }
