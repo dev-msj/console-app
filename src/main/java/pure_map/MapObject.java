@@ -16,4 +16,12 @@ public class MapObject<K, V> {
     public V getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "MapObject{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
 }
