@@ -38,7 +38,7 @@ public class PureMapTest {
 
         Assertions.assertEquals(1, map.get("test"));
         Assertions.assertEquals(14, map.get("fly"));
-        Assertions.assertThrows(NullPointerException.class, () -> map.get("baby"));
+        Assertions.assertEquals(17, map.get("baby"));
     }
 
     @Test
