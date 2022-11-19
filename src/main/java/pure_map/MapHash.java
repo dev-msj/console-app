@@ -9,6 +9,6 @@ public class MapHash {
     }
 
     public static int divisionHashing(int hashCode, int size) {
-        return Math.abs(hashCode) % size + 1;
+        return Math.abs(hashCode) % size;
     }
 }

@@ -76,7 +76,7 @@ public class PureMap<K, V> {
         int coprimeWithMapSize = 7;
         return (
                 MapHash.multipleHashing(keyHash, mapSize) + (
-                        collision * MapHash.divisionHashing(keyHash, coprimeWithMapSize)
+                        collision * (MapHash.divisionHashing(keyHash, coprimeWithMapSize) + 1)
                 )
         ) % mapSize;
     }
