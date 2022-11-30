@@ -4,31 +4,35 @@ import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class Stack {
-    int[] bucket;
+    private Integer[] bucket;
 
-    int size = 10;
-    int position = 0;
+    private int size = 10;
+    private int position = -1;
 
     public Stack() {
-        bucket = new int[size];
+        bucket = new Integer[size];
     }
 
     public void push(int val) {
-        if (position > bucket.length)
+        if (position + 1 >= bucket.length)
             bucket = Arrays.copyOf(bucket, bucket.length + size);
 
-        bucket[position] = val;
         position++;
+        bucket[position] = val;
     }
 
     public int pop() {
-        if (position <= 0)
+        if (position <= -1)
             throw new EmptyStackException();
 
         int returnVal = bucket[position];
-        bucket[position] = 0;
+        bucket[position] = null;
         position--;
 
         return returnVal;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
