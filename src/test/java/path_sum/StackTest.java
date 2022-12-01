@@ -32,4 +32,11 @@ class StackTest {
             stack.pop();
         });
     }
+
+    @Test
+    void getValuesTest() {
+        Integer[] stackValues = stack.getValues();
+        for (int i = 0; i < stackValues.length; i++)
+            assertEquals(data[i], stackValues[i]);
+    }
 }

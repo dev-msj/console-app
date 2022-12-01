@@ -35,4 +35,8 @@ public class Stack {
     public int getPosition() {
         return position;
     }
+
+    public Integer[] getValues() {
+        return Arrays.copyOf(bucket, position + 1);
+    }
 }
