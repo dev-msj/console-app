@@ -6,16 +6,16 @@ import java.util.EmptyStackException;
 public class Stack {
     private Integer[] bucket;
 
-    private int size = 10;
+    private static final int SIZE = 10;
     private int position = -1;
 
     public Stack() {
-        bucket = new Integer[size];
+        bucket = new Integer[SIZE];
     }
 
     public void push(int val) {
         if (position + 1 >= bucket.length)
-            bucket = Arrays.copyOf(bucket, bucket.length + size);
+            bucket = Arrays.copyOf(bucket, bucket.length + SIZE);
 
         position++;
         bucket[position] = val;
