@@ -1,4 +1,6 @@
-package path_sum;
+package path_sum.structure;
+
+import path_sum.model.TreeNode;
 
 public class BinaryTree {
     private final Integer[] treeValues;
@@ -12,12 +14,8 @@ public class BinaryTree {
             return null;
 
         Queue queue = new Queue();
-        for (Integer val : treeValues) {
-            if (val == null)
-                queue.offer(null);
-            else
-                queue.offer(new TreeNode(val));
-        }
+        for (Integer val : treeValues)
+            queue.offer(val == null ? null : new TreeNode(val));
 
         TreeNode root = queue.peek();
         while (queue.getDataCount() != 0) {

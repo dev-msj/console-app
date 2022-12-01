@@ -1,4 +1,4 @@
-package path_sum;
+package path_sum.structure;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;

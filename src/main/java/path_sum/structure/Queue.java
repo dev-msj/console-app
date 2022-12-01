@@ -1,11 +1,14 @@
-package path_sum;
+package path_sum.structure;
+
+import path_sum.model.TreeNode;
 
 import java.util.Arrays;
 
 public class Queue {
+    private static final int SIZE = 10;
+
     private TreeNode[] bucket;
 
-    private static final int SIZE = 10;
     private int front = -1;
     private int rear = -1;
     private int position = -1;

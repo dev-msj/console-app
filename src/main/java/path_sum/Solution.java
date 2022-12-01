@@ -1,5 +1,8 @@
 package path_sum;
 
+import path_sum.model.TreeNode;
+import path_sum.structure.Stack;
+
 class Solution {
     private Stack stack;
     private int targetSum;
@@ -15,13 +18,13 @@ class Solution {
     }
 
     private boolean binTreeSum(TreeNode root) {
-        stack.push(root.val);
+        stack.push(root.getVal());
 
         boolean result = false;
-        if (root.left == null && root.right == null)
+        if (root.getLeft() == null && root.getRight() == null)
             result = sumStack() == targetSum;
         else
-            result = moveNode(root.left) || moveNode(root.right);
+            result = moveNode(root.getLeft()) || moveNode(root.getRight());
 
         if (!result)
             stack.pop();

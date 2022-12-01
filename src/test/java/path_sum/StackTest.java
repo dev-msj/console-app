@@ -2,6 +2,7 @@ package path_sum;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import path_sum.structure.Stack;
 
 import java.util.EmptyStackException;
 

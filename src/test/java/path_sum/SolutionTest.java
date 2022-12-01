@@ -1,6 +1,8 @@
 package path_sum;
 
 import org.junit.jupiter.api.Test;
+import path_sum.model.TreeNode;
+import path_sum.structure.BinaryTree;
 
 import java.util.Arrays;
 
