@@ -8,6 +8,7 @@ public class Queue {
     private static final int SIZE = 10;
     private int front = -1;
     private int rear = -1;
+    private int position = -1;
 
     public Queue() {
         bucket = new TreeNode[SIZE];
@@ -25,11 +26,22 @@ public class Queue {
         if (front >= rear)
             return null;
 
+        if (position <= front)
+            position++;
+
         front++;
         TreeNode node = bucket[front];
         bucket[front] = null;
 
         return node;
+    }
+
+    public TreeNode peek() {
+        if (front >= rear)
+            return null;
+
+        position++;
+        return bucket[position];
     }
 
     public int getDataCount() {

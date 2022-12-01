@@ -34,6 +34,18 @@ class QueueTest {
     }
 
     @Test
+    void peekTest() {
+        assertEquals(1, queue.peek().val);
+        assertEquals(3, queue.getDataCount());
+
+        assertEquals(2, queue.peek().val);
+        assertEquals(3, queue.getDataCount());
+
+        assertEquals(3, queue.peek().val);
+        assertEquals(3, queue.getDataCount());
+    }
+
+    @Test
     void mixTest() {
         assertEquals(1, queue.poll().val);
         assertEquals(2, queue.getDataCount());
