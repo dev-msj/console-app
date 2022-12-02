@@ -14,16 +14,18 @@ public class Stack {
     }
 
     public void push(int val) {
-        if (position + 1 >= bucket.length)
+        if (position + 1 >= bucket.length) {
             bucket = Arrays.copyOf(bucket, bucket.length + SIZE);
+        }
 
         position++;
         bucket[position] = val;
     }
 
     public int pop() {
-        if (position <= -1)
+        if (position <= -1) {
             throw new EmptyStackException();
+        }
 
         int returnVal = bucket[position];
         bucket[position] = null;

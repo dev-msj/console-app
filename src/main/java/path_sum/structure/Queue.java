@@ -18,19 +18,22 @@ public class Queue {
     }
 
     public void offer(TreeNode node) {
-        if (rear + 1 >= bucket.length)
+        if (rear + 1 >= bucket.length) {
             bucket = Arrays.copyOf(bucket, bucket.length + SIZE);
+        }
 
         rear++;
         bucket[rear] = node;
     }
 
     public TreeNode poll() {
-        if (front >= rear)
+        if (front >= rear) {
             return null;
+        }
 
-        if (position <= front)
+        if (position <= front) {
             position++;
+        }
 
         front++;
         TreeNode node = bucket[front];
@@ -40,8 +43,9 @@ public class Queue {
     }
 
     public TreeNode peek() {
-        if (position >= rear)
+        if (position >= rear) {
             return null;
+        }
 
         position++;
         return bucket[position];
