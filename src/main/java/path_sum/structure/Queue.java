@@ -40,7 +40,7 @@ public class Queue {
     }
 
     public TreeNode peek() {
-        if (front >= rear)
+        if (position >= rear)
             return null;
 
         position++;
