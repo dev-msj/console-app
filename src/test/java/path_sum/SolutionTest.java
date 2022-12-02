@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SolutionTest {
-    Integer[] treeValues = {5, 4, 8, 11, null, 13, 14, 7, 2, null, null, null, 1};
+    Integer[] treeValues = {5, 4, 8, null, 11, 13, 14, 7, 2, null, null, null, 1};
 
     @Test
     void solutionTest() {
