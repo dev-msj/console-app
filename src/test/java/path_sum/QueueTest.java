@@ -8,61 +8,67 @@ import path_sum.structure.Queue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
+    int[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     Queue queue;
 
     @BeforeEach
     void setup() {
         queue = new Queue();
-        queue.offer(new TreeNode(1));
-        queue.offer(new TreeNode(2));
-        queue.offer(new TreeNode(3));
+        for (int d : data)
+            queue.offer(new TreeNode(d));
     }
 
     @Test
     void offerTest() {
-        assertEquals(3, queue.getDataCount());
+        queue.offer(new TreeNode(30));
+        queue.offer(new TreeNode(31));
+        assertEquals(data.length + 2, queue.getDataCount());
     }
 
     @Test
     void pollTest() {
-        assertEquals(1, queue.poll().getVal());
-        assertEquals(2, queue.getDataCount());
+        for (int i = 0; i < 5; i++) {
+            assertEquals(data[i], queue.poll().getVal());
+            assertEquals(data.length - 1 - i, queue.getDataCount());
+        }
 
-        assertEquals(2, queue.poll().getVal());
-        assertEquals(1, queue.getDataCount());
+        for (int i = 0; i < data.length; i++)
+            queue.peek();
 
-        assertEquals(3, queue.poll().getVal());
-        assertEquals(0, queue.getDataCount());
+        for (int i = 5; i < data.length; i++) {
+            assertEquals(data[i], queue.poll().getVal());
+            assertEquals(data.length - 1 - i, queue.getDataCount());
+        }
+
+        assertNull(queue.poll());
     }
 
     @Test
     void peekTest() {
-        assertEquals(1, queue.peek().getVal());
-        assertEquals(3, queue.getDataCount());
+        for (int i = 0; i < data.length; i++) {
+            assertEquals(data[i], queue.peek().getVal());
+            assertEquals(data.length, queue.getDataCount());
+        }
 
-        assertEquals(2, queue.peek().getVal());
-        assertEquals(3, queue.getDataCount());
-
-        assertEquals(3, queue.peek().getVal());
-        assertEquals(3, queue.getDataCount());
+        assertNull(queue.peek());
     }
 
     @Test
     void mixTest() {
         assertEquals(1, queue.poll().getVal());
-        assertEquals(2, queue.getDataCount());
+        assertEquals(data.length - 1, queue.getDataCount());
 
         queue.offer(new TreeNode(4));
 
         assertEquals(2, queue.poll().getVal());
-        assertEquals(2, queue.getDataCount());
+        assertEquals(data.length - 1, queue.getDataCount());
 
         assertEquals(3, queue.poll().getVal());
-        assertEquals(1, queue.getDataCount());
+        assertEquals(data.length - 2, queue.getDataCount());
 
         queue.offer(new TreeNode(5));
 
-        assertEquals(4, queue.poll().getVal());
-        assertEquals(1, queue.getDataCount());
+        assertEquals(4, queue.peek().getVal());
+        assertEquals(data.length - 1, queue.getDataCount());
     }
 }
