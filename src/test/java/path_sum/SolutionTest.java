@@ -9,17 +9,18 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SolutionTest {
-    Integer[] treeValues = {5, 4, 8, null, 11, 13, 14, 7, 2, null, null, null, 1};
-
     @Test
     void solutionTest() {
-        TreeNode binaryTree = new BinaryTree(treeValues).makeTree();
+        Integer[] testTreeValues = {5, 4, 8, null, 11, 13, 14, 7, 2, null, null, null, 1};
+        TreeNode binaryTree = new BinaryTree(testTreeValues).makeTree();
         assertTrue(new Solution().hasPathSum(binaryTree, 22));
 
-        binaryTree = new BinaryTree(Arrays.copyOf(treeValues, 0)).makeTree();
+        testTreeValues = Arrays.copyOf(testTreeValues, 0);
+        binaryTree = new BinaryTree(testTreeValues).makeTree();
         assertFalse(new Solution().hasPathSum(binaryTree, 0));
 
-        binaryTree = new BinaryTree(Arrays.copyOf(treeValues, 3)).makeTree();
+        testTreeValues = Arrays.copyOf(testTreeValues, 3);
+        binaryTree = new BinaryTree(testTreeValues).makeTree();
         assertTrue(new Solution().hasPathSum(binaryTree, 13));
     }
 }
